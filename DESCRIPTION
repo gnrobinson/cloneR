@@ -1,0 +1,11 @@
+Package: cloneR
+Title: Identifying clonal groups to aid clone correction in population-based studies
+Version: 1.0.0
+Authors@R: 
+    person("Guy", "Robinson", , "gnrobinson@ucdavis.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-3021-9367"))
+Description: Identifying isolates that are clonally related is an important step is calculating the frequency at which sexual recombination occurs in a population. cloneR calculates the ancestry matrix of different isolates (popularly implemented by STRUCTURE (Pritchard et al, 2000)). cloneR will then determine the pairwise euclidean distance between each isolate and group isolates that are within one standard deviation of 0. These groupings can be viewed visually in network plots or in the membership.txt output file.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
