@@ -1,15 +1,18 @@
 # cloneR - An R package to help clone correction in partially clonal populations
-
 ## Authors: Guy N.M. Robinson and Douglas R. Cook
 
 ---
+
 ## Introduction
+
 cloneR is an R package to identify isolates with the same multilocus genotypes. 
----
+
 ## Pipeline Overview
 
 ![](/github/pipeline_figure.png)
+
 ### 1. Installation
+
 Install package via Github, using "devtools"
 ```{r}
 # install dependencies
@@ -20,13 +23,16 @@ devtools::install_github("gnrobinson/cloneR")
 ```
 
 ### 2. Running cloneR
-cloneR uses an unzipped VCF file as input. It can be run in full or sequentially:
+
+CloneR uses an unzipped VCF file as input. It can be run in full or sequentially:
+
+A. In full
 ```{r}
 library(cloneR)
 
 cloneR(example.vcf, snps = 1000, subsets = 100, K = 2:20)
 ```
-
+B. Sequentially
 ```{r}
 library(cloneR)
 
