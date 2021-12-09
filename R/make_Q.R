@@ -29,6 +29,8 @@ make_Q <- function(K, CPU = 1, alpha = 10, tolerance = 1e-05, iterations = 200, 
         print("You need to enter y/n") }
     }
   }
+  else {
+    dir.create("q_files") }
   # make Q matrix for each K value using snmf() from LEA package
   file_list <- dir(path = "subsets", full.names = FALSE, recursive = TRUE)
   tryCatch(
