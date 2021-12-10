@@ -23,7 +23,7 @@ cloneR exploits advances in genome-wide sequencing to determine multilocus seque
 
 ## Pipeline Overview
 
-![](/github/pipeline_figure.png)
+![](/cloneR_pipeline.png)
 
 ### 1. Installation
 Install package via Github, using "devtools"
