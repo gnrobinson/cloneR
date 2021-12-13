@@ -3,7 +3,7 @@
 # cloneR - An R package to help clone correction in partially clonal populations
 Authors: Guy N.M. Robinson and Douglas R. Cook
 
-Artwork: Kaitlyn Coleman
+Artwork: Kaity Coleman
 
 Department of Plant Pathology, University of California - Davis
 
