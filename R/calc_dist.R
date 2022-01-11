@@ -90,7 +90,7 @@ for (k in K) {
     plt <- ggraph::ggraph(g, layout = "fr") +
       ggraph::geom_edge_link0(width=0.08,colour="black") +
       ggraph::geom_node_point(col="Black",size=1, position = 'identity') +
-      ggraph::geom_node_label(aes(label=name), size = 3, color='black', repel = TRUE) +
+      ggraph::geom_node_text(aes(label=name), size = 3, color='black', repel = TRUE) +
       ggraph::theme_graph()
     print(plt)
     dev.off()
