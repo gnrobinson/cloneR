@@ -1,4 +1,4 @@
-<img align="right" width="140" height="150" src="https://github.com/image.png">
+<img align="right" width="140" height="150" src="https://github.com/gnrobinson/cloneR/cloneR.png">
 
 # cloneR - An R package to help clone correction in partially clonal populations
 Authors: Guy N.M. Robinson and Douglas R. Cook
