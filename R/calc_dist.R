@@ -76,7 +76,7 @@ for (k in K) {
   }
 
   #Plotting network analysis
-  K_grouping <- subset(merged_data_stats[[k]], mean - SD <= 0) #grouping based on 1 SD away from 0. Should be only 5% false negative, according to 68:95:99 rule.
+  K_grouping <- subset(merged_data_stats[[k]], mean - 2*SD <= 0) #grouping based on 2 SD away from 0. Should be only 5% false negative, according to 68:95:99 rule.
 
   #Export image of network
   if (plot == TRUE) {
