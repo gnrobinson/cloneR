@@ -23,19 +23,19 @@ Identifying recombination events during phylogenetic construction is another com
 
 The frequency of clonal to sexual cycles is an important factor in determining the evolutionary trajectory of a species. Due to the hierarchical nature of phylogenetic trees, the clonal correction process can bias the frequency of sexual cycles in a population during linkage disequilibrium analysis. Choosing the hierarchical level to clonally correct to will change the linkage disequilibrium observed, since it is expected that lower linkage disequilibrium would be observed deeper into phylogenetic trees (Figure 1). Clonal correction methods have the possibility to both "under-correct" or "over-correct", each of which could change the evolutionary model used by researchers.
 
-![](/github/phylogenetic_figure.png)
+![](/phylogenetic_figure.png)
 
 CloneR exploits advances in genome-wide sequencing to determine multilocus sequences including information about the standard deviation of sequence. It aims to determine whether two individuals are likely to have a shared ancestry. It builds upon another R package (LEA) that predicts population subdivision by predicting the population's ancestry. LEA utilizes a non-negative matrix factorization algorithm to calculate the ancestry matrix. By continually subdividing each individual's genome into K clusters, this separates isolates that are related clonally versus sexually because at continually higher K values clonal isolates do not continue to subdivide (Figure 2). 
 
-![](/github/subdivision_figure.png)
+![](/subdivision_figure.png)
 
 Using the ancestry coefficients from LEA, CloneR will calculate the euclidean distances between isolates to determine their ancestry distance. Multiple randomly sub-sampled SNP sets are used to account for SNP choice bias and variance in ancestry coefficients based on SNP choice (Figure 3)
 
-![](/github/variance_figure.png)
+![](/variance_figure.png)
 
 Once the grouping of clonal isolates is done, two output files can be generated. The first is a membership table that contains all of the group assignments for each individual. The second is a network plot showing the population structure between the different isolates with nodes representing the isolates and edges representing clonal relations.
 
-![](/github/output_figure.png)
+![](/output_figure.png)
 
 ## Pipeline Overview
 
