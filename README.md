@@ -25,18 +25,21 @@ The frequency of clonal to sexual cycles is an important factor in determining t
 
 ![](/github/phylogenetic_figure.png)
 
-## Pipeline Overview
-
-![](/cloneR_pipeline.png)
 CloneR exploits advances in genome-wide sequencing to determine multilocus sequences including information about the standard deviation of sequence. It aims to determine whether two individuals are likely to have a shared ancestry. It builds upon another R package (LEA) that predicts population subdivision by predicting the population's ancestry. LEA utilizes a non-negative matrix factorization algorithm to calculate the ancestry matrix. By continually subdividing each individual's genome into K clusters, this separates isolates that are related clonally versus sexually because at continually higher K values clonal isolates do not continue to subdivide (Figure 2). 
 
 ![](/github/subdivision_figure.png)
+
 Using the ancestry coefficients from LEA, CloneR will calculate the euclidean distances between isolates to determine their ancestry distance. Multiple randomly sub-sampled SNP sets are used to account for SNP choice bias and variance in ancestry coefficients based on SNP choice (Figure 3)
 
 ![](/github/variance_figure.png)
+
 Once the grouping of clonal isolates is done, two output files can be generated. The first is a membership table that contains all of the group assignments for each individual. The second is a network plot showing the population structure between the different isolates with nodes representing the isolates and edges representing clonal relations.
 
 ![](/github/output_figure.png)
+
+## Pipeline Overview
+
+![](/cloneR_pipeline.png)
 
 ### 1. Installation
 Install package via Github, using "devtools"
