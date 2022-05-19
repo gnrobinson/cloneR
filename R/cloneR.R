@@ -22,12 +22,30 @@ cloneR <- function (input.file, snps = 1000, subsets = 100, K,
                                 percentage = 0.05, iterations = 200, ploidy = 2, plot = TRUE) {
   #creates labels for ancestry
   extract_labels(input.file)
+  
+  #remove erroneous SNP metadata from VCF file
+  x = paste0(input.file)
+  exe = paste0("sed 's#:[0-9][^[:space:]]*##g;s#:[.][^[:space:]]*##g' ", x, " > ", x, ".concise.vcf")
+  system(exe)
+
+  #convert VCF file to geno file
+  if(ploidy == 2){
+  inter.file <- LEA::vcf2geno(paste0(input.file,".concise.vcf"), force = TRUE) #from LEA
+  }
+  if(ploidy == 1){
+  y <- paste0(input.file,".concise.vcf")
+  exe2 <- paste0("./prep_haploid2.sh ", y, " | sed 's/\t//g' > ", y, ".geno")
+  system(exe2)
+  inter.file <- paste0(y, ".geno")
+  }
+  else{
+    stop("Data need to either be haploid or diploid")}
 
   #convert VCF file to geno file
   inter.file <- LEA::vcf2geno(input.file, force = TRUE) #from LEA
 
   #make subsets of vcf file
-  make_subsets(inter.file, snps = snps, subsets = subsets)
+  make_subsets(inter.file, snps = snps, subsets = subsets, ploidy = ploidy)
 
   #calculate Q matrices for all subsets
   make_Q(K, CPU = CPU, alpha = alpha, iterations = iterations, ploidy = ploidy)
