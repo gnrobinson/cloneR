@@ -9,7 +9,7 @@
 #' @examples
 #' make_subsets("example.geno", snps = 1000, subsets = 100)
 
-make_subsets <- function(input.file, subsets = 100, snps = 1000) {
+make_subsets <- function(input.file, subsets = 100, snps = 1000, ploidy = 2) {
   #input file
   input.file = read.geno(input.file)
   #filter out multi-allelic sites
