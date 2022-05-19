@@ -45,7 +45,7 @@ Once the grouping of clonal isolates is done, two output files can be generated.
 Install package via Github, using "devtools"
 ```{r}
 # install dependencies
-install.packages(c("LEA", "ggplot2", "ggraph", "igraph", "tools"))
+install.packages(c("LEA", "ggplot2", "ggraph", "igraph", "tools", "dplyr"))
 
 # install cloneR
 devtools::install_github("gnrobinson/cloneR")
