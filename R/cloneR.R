@@ -33,9 +33,13 @@ cloneR <- function (input.file, snps = 1000, subsets = 100, K,
   inter.file <- LEA::vcf2geno(paste0(input.file,".concise.vcf"), force = TRUE) #from LEA
   }
   if(ploidy == 1){
-  y <- paste0(input.file,".concise.vcf")
-  exe2 <- paste0("./prep_haploid2.sh ", y, " | sed 's/\t//g' > ", y, ".geno")
+  prep_haploid2.sh <- paste('sed "s#[.]/[.]#9#g" $1 |', " awk '($0 !~ ", '"#")', "' | cut -f10- | sed 's#[.]#9#g'")
+  write.table(prep_haploid2.sh, file = "prep_haploid2.sh", quote = FALSE, col.names = FALSE, row.names = FALSE, sep = "")
+  exe2 <- "chmod +x ./prep_haploid2.sh"
   system(exe2)
+  y <- paste0(input.file,".concise.vcf")
+  exe3 <- paste0("./prep_haploid2.sh ", y, " | sed 's/\t//g' > ", y, ".geno")
+  system(exe3)
   inter.file <- paste0(y, ".geno")
   }
   else{
