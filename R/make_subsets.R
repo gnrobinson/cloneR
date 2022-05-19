@@ -12,6 +12,10 @@
 make_subsets <- function(input.file, subsets = 100, snps = 1000) {
   #input file
   input.file = read.geno(input.file)
+  #filter out multi-allelic sites
+  if(ploidy == 1){
+  input.file <- input.file |> dplyr::filter(!grepl('2|3|4', x))
+  }
   #check for "subsets" directory
   if (dir.exists("subsets")){
     ans = "None"
@@ -22,7 +26,8 @@ make_subsets <- function(input.file, subsets = 100, snps = 1000) {
         unlink("subsets", recursive = TRUE, force = TRUE)
         dir.create("subsets") }
       else if (ans == "n") {
-       print("Keeping existing 'subset' directory") }
+       print("Keeping existing 'subset' directory") 
+        stop() }
       else {
         print("You need to enter y/n") }
     }
