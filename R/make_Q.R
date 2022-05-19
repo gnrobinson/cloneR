@@ -24,7 +24,8 @@ make_Q <- function(K, CPU = 1, alpha = 10, tolerance = 1e-05, iterations = 200, 
         unlink("q_files", recursive = TRUE, force = TRUE)
         dir.create("q_files") }
       else if (ans == "n") {
-        print("Keeping existing 'subset' directory") }
+        print("Keeping existing 'subset' directory") 
+        stop() }
       else {
         print("You need to enter y/n") }
     }
