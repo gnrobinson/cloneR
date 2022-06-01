@@ -43,7 +43,7 @@ cloneR <- function (input.file, snps = 1000, subsets = 100, K,
     inter.file <- LEA::vcf2geno(paste0(input.file,".concise.vcf"), force = TRUE) #from LEA
   }
   else{
-    stop("Data need to either be haploid or diploid")}
+    stop("Data need to either be haploid or diploid")} 
 
   #convert VCF file to geno file
   inter.file <- LEA::vcf2geno(input.file, force = TRUE) #from LEA
