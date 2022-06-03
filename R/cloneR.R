@@ -38,11 +38,9 @@ cloneR <- function (input.file, snps = 1000, subsets = 100, K,
   exe3 <- paste0("./prep_haploid2.sh ", y, " | sed 's/\t//g' > ", y, ".geno")
   system(exe3)
   inter.file <- paste0(y, ".geno")
-  }
-  else if(ploidy == 2){
+  } else if(ploidy == 2){
     inter.file <- LEA::vcf2geno(paste0(input.file,".concise.vcf"), force = TRUE) #from LEA
-  }
-  else{
+  } else{
     stop("Data need to either be haploid or diploid")} 
 
   #convert VCF file to geno file
