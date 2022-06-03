@@ -109,6 +109,15 @@ for (k in K) {
   print("Exporting membership assignments")
   # export membership assignments
   write.table(final, file = paste0("membership.txt"), sep = '\t', row.names = TRUE, quote = FALSE, col.names = NA)
+
+  ## creating recommendation for K value based on minimum standard deviation
+  sd_list <- list()
+  for (k in 2:20){
+    sd_list[k] <- mean(merged_data_stats[[k]]$SD)
+  }
+  recommended_k <- which.min(unlist(sd_list))
+  recommended_k_isolates <- final[recommended_k]
+  write.table(recommended_k_isolates, file = paste0("membership_recommended.txt"), sep = '\t', row.names = TRUE, quote = FALSE, col.names = NA)
 }
 
 
