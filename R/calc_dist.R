@@ -33,13 +33,13 @@ labels <- read.table("label.txt") # reads label data from VCF file
 
 # wrangles data into correct format
 calc_euclid <- function(data_list) {
-  input <- cbind(labels[1], data_list)
-  euclid <- suppressWarnings(dist(input, method = "euclidean"))
-  euclid <- as.matrix(euclid, labels = T)
-  colnames(euclid) = rownames(euclid) = input$V1
-  euclid_long <- reshape2::melt(euclid)
-  return(euclid_long)
-}
+    input <- cbind(labels[1], data_list)
+    euclid <- suppressWarnings(dist(input, method = "euclidean"))
+    euclid <- as.matrix(euclid, labels = T)
+    colnames(euclid) = rownames(euclid) = input$V1
+    euclid_long <- reshape2::melt(euclid)
+    return(euclid_long)
+  }
 
 #create empty lists
 file.list = list()
@@ -57,19 +57,31 @@ for (k in K) {
 
   # make file lists
   file.list[[k]] <- list.files(path = "q_files", pattern = paste0(k,".Q"), full.names = FALSE)
+  
   # create list of data
   data <- lapply(file.list, making_tbls)
+  
   #calculate euclidean distances from data
   euclid[[k]] <- lapply(data[[k]], FUN = calc_euclid)
+  
   #Merge all dataframes of within list into a single dataframe
-  merged_data[[k]] = suppressWarnings(Reduce(function(...) merge(..., all=T, by=c(1,2)), euclid[[k]]))
-  colnames(merged_data[[k]]) = c("Var1", "Var2", 3:length(merged_data[[k]]))
+  merged_data[[k]] <- euclid[[k]][1][[1]]$value
+  for(i in seq(2, length(euclid[[k]]),1)){
+    merged_data[[k]] = cbind(merged_data[[k]], euclid[[k]][i][[1]]$value)
+    }
+  merged_data[[k]] <- as.data.frame(merged_data[[k]])
+  merged_data[[k]] <- cbind(euclid[[k]][1][[1]]$Var1, euclid[[k]][1][[1]]$Var2, merged_data[[k]])
+  colnames(merged_data[[k]]) = c("Var1", "Var2", 3:length(euclid[[k]]))                          
+  
   #creating new dataframe containing statistics
   merged_data_stats[[k]] <- merged_data[[k]][1:2]
+  
   #calculate the mean
   merged_data_stats[[k]]$mean = rowSums(merged_data[[k]][3:length(merged_data[[k]])]) / (length(merged_data[[k]])-2)
+  
   #calculating the standard deviation
   merged_data_stats[[k]]$SD =  apply(merged_data[[k]][3:length(merged_data[[k]])], MARGIN = 1, FUN = sd)
+  
   # empty unused K elements
   for (l in (minK-1):1) {
     merged_data_stats[[l]] = list()
@@ -112,7 +124,7 @@ for (k in K) {
 
   ## creating recommendation for K value based on minimum standard deviation
   sd_list <- list()
-  for (k in 2:20){
+  for (k in K){
     sd_list[k] <- mean(merged_data_stats[[k]]$SD)
   }
   recommended_k <- which.min(unlist(sd_list))
