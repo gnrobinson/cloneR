@@ -91,6 +91,7 @@ for (k in K) {
   K_grouping <- subset(merged_data_stats[[k]], mean - 2*SD <= 0) #grouping based on 2 SD away from 0. Should be only 5% false negative, according to 68:95:99 rule.
 
   #Export image of network
+  library(ggplot2) #Need to reload ggplot2 for geom_node_text() to work
   if (plot == TRUE) {
     nodelist <- unique.data.frame(as.data.frame(K_grouping[, 1]))
     nodelist$Size <- 2
