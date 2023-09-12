@@ -43,9 +43,6 @@ cloneR <- function (input.file, snps = 1000, subsets = 100, K,
   } else{
     stop("Data need to either be haploid or diploid")} 
 
-  #convert VCF file to geno file
-  inter.file <- LEA::vcf2geno(input.file, force = TRUE) #from LEA
-
   #make subsets of vcf file
   make_subsets(inter.file, snps = snps, subsets = subsets, ploidy = ploidy)
 
